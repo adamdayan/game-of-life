@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# vscode gubbins
+.vscode/*
+
+# executable
+run_game
