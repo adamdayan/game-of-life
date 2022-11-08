@@ -8,11 +8,11 @@ int get_remainder(int dividend, int divisor) {
 }
 
 
-std::vector<std::vector<int>> Board::getBoard() {
+std::vector<std::vector<int>> CPUBoard::getBoard() {
     return board;
 }
 
-void Board::setManualSeed(const std::vector<std::vector<int>>& seed_board) {
+void CPUBoard::setManualSeed(const std::vector<std::vector<int>>& seed_board) {
     if (static_cast<int>(seed_board.size()) != size) {
         throw std::invalid_argument("Seed board is wrong size");
     }
@@ -24,7 +24,7 @@ void Board::setManualSeed(const std::vector<std::vector<int>>& seed_board) {
     board = seed_board;
 }
 
-void Board::setRandomSeed() {
+void CPUBoard::setRandomSeed() {
     std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution(0,1);
     for (int i = 0; i < size; i++) {
@@ -36,7 +36,7 @@ void Board::setRandomSeed() {
     }
 }
 
-int Board::computeAliveNeighbourCnt(const int x, const int y) {
+int CPUBoard::computeAliveNeighbourCnt(const int x, const int y) {
     int cnt_alive_neighbours = 0;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -48,21 +48,20 @@ int Board::computeAliveNeighbourCnt(const int x, const int y) {
     return cnt_alive_neighbours;
 }
 
-void Board::evolve() {
+void CPUBoard::evolve() {
     old_board = board;
     generation++;
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
             int cnt_alive_neighbours = computeAliveNeighbourCnt(i, j);
             // TODO: write new board
-            if (board[i][j] == 1 && cnt_alive_neighbours < 2) { // dies by underpopulation
+            if (old_board[i][j] == 1 && cnt_alive_neighbours < 2) { // dies by underpopulation
                 board[i][j] = 0;
-            } else if (board[i][j] == 1 && cnt_alive_neighbours > 3) { // dies by overpo
+            } else if (old_board[i][j] == 1 && cnt_alive_neighbours > 3) { // dies by overpo
                 board[i][j] = 0;
-            } else if (board[i][j] == 0 && cnt_alive_neighbours == 3) { // born by reproduction
+            } else if (old_board[i][j] == 0 && cnt_alive_neighbours == 3) { // born by reproduction
                 board[i][j] = 1;
             }
         }
     }
 }
-
