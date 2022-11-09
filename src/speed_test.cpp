@@ -4,9 +4,9 @@
 
 
 int main() {
-    std::vector<int> sizes{100, 1000, 10000};
+    std::vector<int> sizes{100, 1000};
     for (int size : sizes) {
-        std::cout << "size: " << size << std::endl << std::endl;
+        std::cout << "size: " << size << std::endl;
         GameManager cpu_gm(size, false, false);
         auto start = std::chrono::steady_clock::now();
         cpu_gm.play(1000);
@@ -20,6 +20,6 @@ int main() {
         auto gpu_diff = end - start;
 
         std::cout << "cpu: " << std::chrono::duration <double, std::milli>(cpu_diff).count() << "ms" 
-            << " gpu: " << std::chrono::duration <double, std::milli>(gpu_diff).count() << "ms" << std::endl;
+            << " gpu: " << std::chrono::duration <double, std::milli>(gpu_diff).count() << "ms" << std::endl << std::endl;
     }
 }

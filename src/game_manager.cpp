@@ -1,6 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include <thread>
+#include <vector>
 #include "game_manager.h"
 #include "board.h"
 #include "renderer.h"
@@ -8,8 +10,44 @@
 
 
 
+// assumes saved board will follow format of:
+// 0 0 1 1
+// 1 0 0 1
+// 0 1 1 1
+// 1 0 0 0
+std::vector<std::vector<int>> GameManager::loadBoard() {
+    std::ifstream board_file(board_path);
+    std::vector<std::vector<int>> seed_board;
+    for (int i = 0; i < size; i++) {
+        std::string line;
+        getline(board_file, line);
+        std::vector<int> row;
+        for (int j = 0; j < size; j++) {
+            row.push_back(std::stoi(line.substr(j*2, j*2+1)));
+        }
+        seed_board.push_back(row);
+    }
+    return seed_board;
+}
+
+void GameManager::saveBoard(std::vector<std::vector<int>> seed_board) {
+    std::ofstream board_file("data/board.txt");
+    for (auto row : seed_board) {
+        std::string line;
+        for (auto cell : row) {
+            line+= std::to_string(cell) + " ";
+        }
+        board_file << line << std::endl;
+    }
+}
+
 void GameManager::play() {
-    board->setRandomSeed(); // TODO: add manual seed
+    if (board_path.empty()) {
+        board->setRandomSeed();
+        saveBoard(board->getBoard());
+    } else {
+        board->setManualSeed(loadBoard());
+    }
     while (true) {
         if (is_rendered) {
             try {

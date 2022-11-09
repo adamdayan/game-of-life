@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall
+CFLAGS = -Wall -g
 INC = -I include -I /usr/local/cuda/include
 SFML = -lsfml-graphics -lsfml-window -lsfml-system
 CUDA = -lcuda -lcudart

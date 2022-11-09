@@ -24,7 +24,11 @@ std::vector<std::vector<int>> GPUBoard::getBoard() {
 }
 
 void GPUBoard::setManualSeed(const std::vector<std::vector<int>>& seed_board) {
-    return;
+    for (auto row : seed_board) {
+        for (auto cell : row) {
+            board.push_back(cell);
+        }
+    }
 }
 
 void GPUBoard::setRandomSeed() {
