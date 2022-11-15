@@ -34,6 +34,12 @@
 # vscode gubbins
 .vscode/*
 
+# CMake stuff
+CMakeCache.txt
+CMakeFiles/*
+cmake_install.cmake
+Makefile
+
 # executable
 run_game
 speed_test

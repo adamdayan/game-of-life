@@ -4,7 +4,7 @@
 
 
 int main() {
-    std::vector<int> sizes{100, 1000};
+    std::vector<int> sizes{100, 1000, 10000};
     for (int size : sizes) {
         std::cout << "size: " << size << std::endl;
         GameManager cpu_gm(size, false, false);
