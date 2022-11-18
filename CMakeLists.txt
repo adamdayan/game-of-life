@@ -23,3 +23,16 @@ target_link_libraries(run_game PUBLIC game_backend)
 # create speed_test executable
 add_executable(speed_test src/speed_test.cpp)
 target_link_libraries(speed_test PUBLIC game_backend)
+
+# create tests
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+FetchContent_MakeAvailable(googletest)
+enable_testing()
+add_executable(test_cpu_board test/test_cpu_board.cpp)
+target_link_libraries(test_cpu_board GTest::gtest_main game_backend)
+include(GoogleTest)
+gtest_discover_tests(test_cpu_board)

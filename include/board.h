@@ -39,14 +39,8 @@ class GPUBoard : public Board {
     void setRandomSeed() override;
     void evolve() override;
   private:
-    thrust::device_vector<int> board; //= thrust::device_vector<int>(size*size);
-    thrust::device_vector<int> old_board; // = thrust::device_vector<int>(size*size);
-
-  // TODO: add thrust vector (try in this file but potentially means different file)
-  // + write code in board.cu (!) 
-
-  // NOTE - unclear this will cause significant speed up cos of copying around
-  // however I think if no one calls getBoard() then we can avoid moving data from device_vector to host_vector
+    thrust::device_vector<int> board;
+    thrust::device_vector<int> old_board;
 };
 
 #endif
