@@ -10,8 +10,8 @@ This project was intended to introduce me to CUDA programming. I have implemente
 - CMake
 # Instructions to run
 - build by running `cmake --build .` in the root of the repo
-- to run GUI, run ./run_game
-- to execute the speed test, run ./speed_test
+- to run GUI, run `./run_game`
+- to execute the speed test, run `./speed_test`
 - execute tests by running `ctest` in root of directory
 
 # CPU vs GPU comparison
