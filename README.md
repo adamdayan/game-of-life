@@ -16,6 +16,6 @@ This project was intended to introduce me to CUDA programming. I have implemente
 
 # CPU vs GPU comparison
 
-This is not a fair comparison between CPU and GPU because there are many optimisations one could introduce to my CPU implemention (e.g. multithreading). However, it's nonetheless noteworthy that the GPU implemention runs 200x faster on large boards. 
+This is not a fair comparison between CPU and GPU because there are many optimisations one could introduce to my CPU implemention (e.g. multithreading). However, the 200x run time difference was useful in demonstrating to me the power of a GPU for embarassingly-parallel problems. 
 
 ![image info](./time_comparison.png)
